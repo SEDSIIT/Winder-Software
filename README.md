@@ -2,7 +2,7 @@
 
 ## Installation:
 
-You can find Cyclone [here](https://github.com/reilleya/cyclone)
+You can find Cyclone [here.](https://github.com/reilleya/cyclone) Follow the installation instructions provided.
 
 Once Cyclone is installed, put the "guistuff" folder and the "Cyclone Data Intake.py" script in the "cyclone-main" folder
 
