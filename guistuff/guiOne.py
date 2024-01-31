@@ -22,7 +22,7 @@ def submit():
     }
     json_object = json.dumps(dictionary, indent=4)
 
-    with open('guistuff\guiOut.json', 'w') as outfile:
+    with open('guistuff\\guiOut.json', 'w') as outfile:
         outfile.write(json_object)
     
     time.sleep(2)
@@ -36,7 +36,7 @@ window =Tk()
 
 window.title("Winder Software V0.1")
 
-icon = ImageTk.PhotoImage(Image.open("guistuff\logo.png"), master=window)
+icon = ImageTk.PhotoImage(Image.open("guistuff\\logo.png"), master=window)
 window.iconphoto(True, icon)
 window.config(background='#ffffff')
 

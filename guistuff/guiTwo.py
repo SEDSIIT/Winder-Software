@@ -64,14 +64,14 @@ def submit():
     
     json_object = json.dumps(dictionary, indent=4)
     
-    with open('guistuff\\tempLayers\layers.json', 'w') as outfile:
+    with open('guistuff\\tempLayers\\layers.json', 'w') as outfile:
         outfile.write(json_object)
     
     exec(open("Cyclone Data Intake.py").read())
     
     exit()
 
-file = open("guistuff\guiOut.json")
+file = open("guistuff\\guiOut.json")
 data = json.load(file)
 
 numLayers = data["numLayers"]
