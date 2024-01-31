@@ -10,4 +10,4 @@ Go into the "guistuff" folder, and create a new folder called "tempLayers" (Need
 
 ## Usage
 
-To run the program, go into the "guistuff" folder, open a command prompt, and enter ```py .\guiOne.py```
+To run the program, go into the "cyclone-main" folder, open a command prompt, and enter ```py .\guistuff\guiOne.py```
