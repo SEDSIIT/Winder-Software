@@ -1,69 +1,60 @@
 import os
-import numpy
 import json
 
-print("Enter the following values in mm.")
+file = open("guistuff\\guiOut.json")
+fileTwo = open("guistuff\\tempLayers\\layers.json")
+data= json.load(file)
+dataTwo = json.load(fileTwo)
 
-tubeThickness = float(input("Enter tube thickness: "))
-tubeId = float(input("Enter inner diameter of the tube(also the OD of the mandrel): "))
-tubeLength = float(input("Enter tube length: "))
-towWidth = float(input("Enter tow width: "))
-towThickness = float(input("Enter tow thickness: "))
+tubeThickness = data["tubeWall"]
+tubeId = data["tubeID"]
+tubeLength = data["tubeLength"]
+towWidth = data["towWide"]
+towThickness = data["towThick"]
 
-numLayers = round(tubeThickness / towThickness)
+numLayers = data["numLayers"]
 
 layers = []
 
-x = 0
+for x in range(numLayers):
+    layer = dataTwo["layer "+str(x)]
 
-while(x<numLayers):
-    print("Layer ", x+1)
-    helOrHoop =input("Is this layer a hoop layer(True or False)? ")
-    
-    if (helOrHoop.lower()=="true"):
-        if(x+1 == numLayers):
-            layer = {
+    if layer["windType"]=="hoop":
+        if(x+1)==numLayers:
+            windLayer={
                 "windType": "hoop",
                 "terminal": True
             }
+            layers.append(windLayer)
         else:
-            layer = {
+            windLayer={
                 "windType": "hoop",
                 "terminal": False
             }
+            layers.append(windLayer)
     else:
-        ang = int(input("Enter wind angle: "))
-        patNum = int(input("Enter pattern number: "))
-        skipInd = int(input("Enter skip index: "))
-        lockDeg = int(input("Enter lock angle: "))
-        leadInMM = int(input("Enter lead in length(mm): "))
-        leadOutAng = int(input("Enter lead out angle: "))
-        SkipIni = bool(input("Skip inital near lock?(True or False): "))
-        
-        layer = {
+        windLayer={
             "windType": "helical",
-            "windAngle": ang,
-            "patternNumber": patNum,
-            "skipIndex": skipInd,
-            "lockDegrees": lockDeg,
-            "leadInMM": leadInMM,
-            "leadOutDegrees": leadOutAng,
-            "skipInitialNearLock": SkipIni
+            "windAngle": layer["windAngle"],
+            "patternNumber": layer["patternNum"],
+            "skipIndex": layer["skipIndex"],
+            "lockDegrees": layer["lockAngle"],
+            "leadInMM": layer["leadInMM"],
+            "leadOutDegrees": layer["leadOutAngle"],
+            "skipInitialNearLock": layer["skipInitalNearLock"]
         }
-    
-    layers.append(layer)
-    x+=1
+        layers.append(windLayer)
 
 
 dictionary = {
     "layers": layers,
     "mandrelParameters": {
-        "diameter": tubeId,
-        "windLength": tubeLength
+        "diameter": data["tubeID"],
+        "windLength": data["tubeLength"]
     },
     "towParameters": {
-        "width": towWidth,
-        "thickness": towThickness
+        "width": data["towWide"],
+        "thickness": data["towThick"]
     },
     "defaultFeedRate": 8000
 }
