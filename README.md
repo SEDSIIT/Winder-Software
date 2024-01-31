@@ -10,4 +10,4 @@ Go into the "guistuff" folder, and create a new folder called "tempLayers" (Need
 
 ## Usage
 
-To run the program, go into the "cyclone-main" folder, and run "run.bat"
+To run the program, go into the "cyclone-main" folder, and run "Run.bat"
